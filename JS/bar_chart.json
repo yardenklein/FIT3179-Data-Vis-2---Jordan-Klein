@@ -1,0 +1,76 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 390,
+  "height": 200,
+  "data": {
+    "url": "data/ME_GPI_AVG_2008_2022.csv"
+  },
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "field": "Continent", 
+          "title": "Continent",
+          "axis": {
+            "labelExpr": "",
+            "tickOpacity": 0
+          }
+        },
+        "x": {
+          "aggregate": "sum",
+          "field": "Total_Military_Expenditure_2008_2022",
+          "type": "quantitative",
+          "sort": "ascending",
+          "title": "Average Military Expenditure (2008-2022, USD in Millions)",
+          "axis": {
+            "tickMinStep": 7500
+          }
+        },
+        "color": {
+          "field": "Continent",
+          "scale": {
+            "type": "ordinal",
+            "range": ["#cfcfcf", "#cfcfcf", "#cfcfcf", "#1e90ff", "#cfcfcf", "#cfcfcf"]  
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 3,
+        "fontWeight": "bold",
+        "fontSize": 11  
+      },
+      "encoding": {
+        "y": {"field": "Continent", "title": "Continent"},
+        "x": {
+          "aggregate": "sum",
+          "field": "Total_Military_Expenditure_2008_2022",
+          "type": "quantitative",
+          "sort": "ascending",
+          "title": ""
+        },
+        "text": {"field": "Continent"},
+        "color": {
+          "field": "Continent",
+          "scale": {
+            "type": "ordinal",
+            "range": ["#cfcfcf", "#cfcfcf", "#cfcfcf", "#fac64d", "#cfcfcf", "#cfcfcf"]  
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "#f8f8f8",
+    "font": "sulphur",
+    "style": {
+      "cell": {"stroke": "transparent"}
+    }
+  }
+}

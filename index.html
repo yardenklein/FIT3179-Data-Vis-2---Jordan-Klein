@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Global Peace Index</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+
+</head>
+
+<body id="top">
+
+  <div class="page" >
+
+    <!-- pure grid group -->
+    <h1>A study on World Peace, 2008-2022</h1>
+    <p class="subtitle">A visualisation created by <b>Jordan Klein</b></p>
+    <hr>
+    <!-- end pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div class="description-left">
+          <p>According to the <b>Global Peace Index (GPI)</b>, peace is measured across various domains such as <b>levels of violence, conflict, and militarisation</b> within countries. The index ranks nations based on their relative states of peace, taking into account factors like domestic safety, the degree of international conflict, and the extent of militarisation.</p>
+          <p>In this visualisation, we will explore how global peace has evolved over time from <b>2008 to 2022</b>, highlighting trends across different countries and regions. The data will allow us to assess whether factors like <b>geographical location and economic stability</b> may be related to peace levels, providing a comprehensive view of global peace over the years.</p>
+          
+        </p>
+      </div>
+    </div>
+      <div class="pure-u-1-2" >
+        <div class="description-right">
+          <p> 🖰 <b>Select a box to scroll to that section.</b></p>
+          <a href="#GeoLocate"><div class="box"><font style="color: black">Geographical Location</font></div></a><br>
+          <a href="#gdp"><div class="box"><font style="color: black">Military Expenditure</font></div></a><br>
+        </div>
+    </div>
+    </div>
+    <!-- pure grid group -->
+    
+
+    <div>
+      <div>
+        <div id="GeoLocate"class="description description-left">
+          <h2>Geographical Location</h2>
+        </div>
+        <hr>
+      </div>
+      <div>
+        <h3>Global Peace Indices, 2008-2022</h3>
+        <div id="vis1" class="vis-container"></div>
+      </div>
+      
+    </div>
+    <!-- end pure grid group -->
+    
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div class="description description-left">
+          <p>
+            <b>The map above</b> displays a global view of peace indices from 2008 to 2022. From this map, we observe that regions in Europe, particularly the northern areas, have remained stable. Countries in the Middle East and parts of Africa show lower peace scores consistently. Australia, the United States, and Canada maintain higher stability. The map on the right provides a closer look at specific regions globally.
+
+            <b>The map to the right</b> shows a zoomed in perspective of each continent 
+          </p>
+          <p>
+            🖰 <i><b>Select a continent</b> below the map to explore how peace levels vary between countries. <b>Use the zoom slider</b> to get a closer view of specific regions.</i> <br>
+            🖰 <i><b>Adjust the year slider</b> to observe changes in peace levels over time, and <b>hover over countries</b> to see each nation's Global Peace Index (GPI).</i>
+          </p>          
+          <p>
+            From both maps, it is <b>clear that geography plays a significant role</b> in influencing peace levels across different regions. While factors like <b>economic stability, quality of life, and political conditions</b> may also contribute, the patterns across continents suggest that geographical location is a key factor. It’s also important to consider that some countries may have incomplete or inconsistent data reporting, which could impact the accuracy of their Global Peace Index scores.
+          </p>          
+        </div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="description description-right">
+        <h3>Peace Levels by Continent, 2008-2022</h3>
+        <div id="vis5" class="vis-container"></div>
+        <div id="slider-container">
+          <p><b>Year:</b></p>
+          <input type="range" id="year-slider2" min="2000" max="2019" step="1" value="2000">
+          <span id="slider-value2">2008</span>
+        </div>
+        <div id="slider-container">
+          <p><b>Zoom:</b></p>
+          <input type="range" id="zoom-slider" min="200" max="700" step="100" value="300">
+          <span id="slider-value3">20</span><span>%</span>
+        </div>
+        <div id="slider-container">
+          <label for="continent-select"><b>Continent:</b> </label><p></p>
+          <select id="continent-select">
+            <option value="[20, 10]">Africa</option>
+            <option value="[73, 30]">Asia</option>
+            <option value="[15, 50]">Europe</option>
+            <option value="[-100, 40]">North America</option>
+            <option value="[125, -15]" selected>Oceania</option>
+            <option value="[-60, -20]">South America</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- pure grid group -->
+    <div id="gdp">
+      <h2>Military Expenditure</h2>
+      <hr>
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div class="description description-left">
+            <h3>Mean Military Expenditure per Continent, 2022</h3>
+            <div id="vis4" class="vis-container"></div>
+          </div>
+        </div>
+        <div class="pure-u-1-2">
+          <div class="description-right">
+          <h3>Average GPI by Continent, 2008-2022</h3>
+          <div id="vis2" class="vis-container"></div>
+        </div>
+        </div>
+      </div>
+    </div>
+      <!-- end pure grid group -->
+    <div class="pure-g">
+      
+      <div class="pure-u-1-2">
+        
+        <br>
+        <h3>GPI Vs Military Expenditure, 2008-2022</h3>
+        <div id="vis3" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="description-right">
+          <p>From <b>the bar chart above</b>, we can see that, throughout 2008-2022, <b style="color: #1e90ff;">North America</b> had a significantly higher average military expenditure compared to other continents. However, if we look at <b>the line graph</b>, we do not see <b style="color: #1e90ff;">North America</b> having a major difference in average GPI compared to other continents.</p>
+
+<p><b>The scatter plot</b> to the right shows the <b>Average Military Expenditure</b> vs the <b>Average GPI</b> from 2008 to 2022. The dashed lines show the average GPI and military expenditure. We can see that there is no direct relationship between the two, but countries like <b>Russia</b> and <b>China</b> have high military spending with higher GPI scores, while <b>Australia</b> spends more but maintains a lower GPI.</p>
+
+          <span style="font-size:12px;">
+            <p>
+              🖰 <i><b>Hover</b> over elements in <b>the line graph</b> and <b>the scatter plot</b> to reveal more details.</i><br>
+🖰 <i><b>Click</b> on the continents in the legend to focus on data from that specific continent.</i><br>
+🖰 <i><b>Use your mouse and scroll wheel</b> to zoom and explore the <b>scatter plot</b>, and <b>double-click</b> anywhere to reset the view.</i>
+
+            </p>
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <a href="#top"><div class="box"><font style="color: black">Back to top</font></div></a><br>
+  </div> <!-- end page -->
+
+
+  <script type="text/javascript">
+    var specVis1 = "./JS/GlobalMap.json";
+    var specVis2 = "./JS/line_chart.json";
+    var specVis3 = "./JS/Scatterplot.json";
+    var specVis4 = "./JS/bar_chart.json";
+    var specVis5 = "./JS/continentalMap.json";
+
+
+    //vegaEmbed("#vis1", specVis1).then(() => {
+  // Set an initial value for the slider
+    //}).catch(console.error);
+
+    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    //vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    //}).catch(console.error);
+
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    //vegaEmbed('#vis10', specVis10, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    //}).catch(console.error);
+
+    vegaEmbed("#vis1", specVis1,{ "actions": false }).then((result) => {
+      const view = result.view;
+
+      // Add event listener for the slider
+      const slider = document.getElementById("year-slider");
+      const sliderValue = document.getElementById("slider-value");
+      slider.addEventListener("input", function () {
+        const yearSelection = +this.value;
+        sliderValue.textContent = yearSelection;
+        view.signal("Year_selection", yearSelection).runAsync();
+      });
+    }).catch(console.error);
+
+    vegaEmbed("#vis5", specVis5,{ "actions": false }).then((result) => {
+      const view = result.view;
+
+      // Add event listener for the slider
+      const slider = document.getElementById("year-slider2");
+      const sliderValue = document.getElementById("slider-value2");
+      const zoomSlider = document.getElementById("zoom-slider");
+      const zoomValue = document.getElementById("slider-value3");
+      const continent = document.getElementById("continent-select");
+      slider.addEventListener("input", function () {
+        const yearSelection = +this.value;
+        sliderValue.textContent = yearSelection;
+        view.signal("Year_selection", yearSelection).runAsync();
+      });
+      zoomSlider.addEventListener("input", function () {
+        const zoomLevel = +this.value;
+        zoomValue.textContent = (zoomLevel-200)/500 * 100;
+        // Update the "Zoom_selection" parameter in the Vega-Lite specification
+        view.signal("zoom_level", zoomLevel).runAsync();
+      });
+      continent.addEventListener("input", function () {
+        const selectedCenter = JSON.parse(this.value);
+        view.signal("center_to", selectedCenter).runAsync();
+
+      })
+    }).catch(console.error);
+
+  
+      </script>
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 375,
+  "height": 460,
+  "data": {
+    "url": "data/Avg_GPI_ME_Data.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "opacity": 0.8,
+        "size": 45
+      },
+      "params": [
+        {
+          "name": "selection",
+          "select": {"type": "point", "fields": ["Continent"]},
+          "bind": "legend"
+        },
+        {
+          "name": "grid",
+          "select": "interval",
+          "bind": "scales"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Average_Military_Expenditure", 
+          "type": "quantitative", 
+          "axis": {
+            "title": "Military Expenditure (in millions of USD, 2022)", 
+            "tickMinStep": 1000
+          },
+          "scale": {"type": "log", "domainMin": 1}
+        },
+        "y": {
+          "field": "GPI", 
+          "type": "quantitative", 
+          "axis": {"title": "Average GPI"}
+        },
+        "color": {
+          "field": "Continent",
+          "scale": {
+            "type": "ordinal",
+            "range": ["#ff6347", "#ffd700", "#32cd32", "#1e90ff", "#ff69b4", "#8a2be2"]  
+          },
+          "legend": {"title": "Continents", "orient": "top"}
+        },
+        "opacity": {"condition": {"param": "selection", "value": 1}, "value": 0.1},
+        "tooltip": [
+          {"field": "Country", "title": "Country"},
+          {"field": "Continent", "title": "Continent"},
+          {"field": "GPI", "title": "Average GPI"},
+          {"field": "Average_Military_Expenditure", "title": "Military Expenditure (in millions of USD)"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [6, 4]
+      },
+      "encoding": {
+        "y": {
+          "field": "GPI",
+          "type": "quantitative",
+          "aggregate": "mean",
+          "title": ""
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [6, 4]
+      },
+      "encoding": {
+        "x": {
+          "field": "Average_Military_Expenditure",
+          "type": "quantitative",
+          "aggregate": "mean",
+          "title": ""
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 6,
+        "fontSize": 13,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "Country", "type": "nominal"},
+        "x": {"field": "Average_Military_Expenditure", "type": "quantitative"},
+        "y": {"field": "GPI", "type": "quantitative"},
+        "color": {
+          "field": "Continent",
+          "scale": {
+            "type": "ordinal",
+            "range": ["#ff6347", "#ffd700", "#32cd32", "#1e90ff", "#ff69b4", "#8a2be2"]  
+          }
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum['Country'] == 'Australia' || datum['Country'] == 'United States' || datum['Country'] == 'China' || datum['Country'] == 'Russia'",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "sulphur",
+    "background": "#f8f8f8"
+  }
+}

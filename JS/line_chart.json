@@ -1,0 +1,55 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 405,
+  "height": 200,
+  "data": {
+    "url": "data/Average_Military_Expenditure_and_GPI_by_Year_2008_2022.csv"
+  },
+  "mark": "line",
+  "params": [
+    {
+      "name": "continent",
+      "select": {"type": "point", "fields": ["Continent"]},
+      "bind": "legend"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "temporal",
+      "title": "Year",
+      "axis": {"domain": true, "tickSize": 2}
+    },
+    "y": {
+      "field": "Average_GPI_per_Year",
+      "type": "quantitative",
+      "title": "Average GPI"
+    },
+    "color": {
+      "field": "Continent",
+      "scale": {
+        "type": "ordinal",
+        "range": ["#ff6347", "#ffd700", "#32cd32", "#1e90ff", "#ff69b4", "#8a2be2"]  
+      },
+      "legend": {
+        "title": "Continents",
+        "orient": "bottom"
+      }
+    },
+    "opacity": {
+      "condition": {"param": "continent", "value": 1},
+      "value": 0.2
+    },
+    "tooltip": [
+      {"field": "Continent", "title": "Continent"},
+      {"field": "Average_Military_Expenditure_per_Year", "title": "Military Expenditure (USD)", "format": ",.2f"},
+      {"field": "Average_GPI_per_Year", "title": "Average GPI", "format": ".2f"},
+      {"field": "Year", "title": "Year", "type": "temporal"}
+    ]
+  },
+  "config": {
+    "font": "sulphur",
+    "background": "#f8f8f8",
+    "style": {"cell": {"stroke": "transparent"}}
+  }
+}
